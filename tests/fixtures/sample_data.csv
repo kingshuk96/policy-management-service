@@ -1,0 +1,11 @@
+firstName,email,dob,address,phone,state,zipCode,gender,userType,agentName,accountName,categoryName,companyName,policyNumber,policyStartDate,policyEndDate,premiumAmount
+John,john.doe@example.com,1990-05-15,123 Main St,555-0101,CA,90001,Male,Primary,Alex Mercer,JohnDoe-Account,Commercial Auto,Progressive Insurance,POL-10001-A,2024-01-01,2025-01-01,1250.00
+John,john.doe@example.com,1990-05-15,123 Main St,555-0101,CA,90001,Male,Primary,Alex Mercer,JohnDoe-Account,Home Insurance,State Farm,POL-10001-B,2024-03-01,2025-03-01,850.00
+John,john.doe@example.com,1990-05-15,123 Main St,555-0101,CA,90001,Male,Primary,Alex Mercer,JohnDoe-Account,Life Insurance,MetLife,POL-10001-C,2024-06-01,2025-06-01,1700.00
+Jane,jane.smith@example.com,1985-11-22,456 Oak Ave,555-0202,TX,75001,Female,Primary,Sarah Connor,JaneSmith-Account,Commercial Auto,Progressive Insurance,POL-10002-A,2024-02-01,2025-02-01,950.00
+Jane,jane.smith@example.com,1985-11-22,456 Oak Ave,555-0202,TX,75001,Female,Primary,Sarah Connor,JaneSmith-Account,Dental Insurance,Cigna,POL-10002-B,2024-04-01,2025-04-01,320.00
+Bob,bob.jones@example.com,1978-08-30,789 Pine Rd,555-0303,NY,10001,Male,Secondary,Alex Mercer,BobJones-Account,Commercial Auto,Allstate,POL-10003-A,2024-01-15,2025-01-15,1100.00
+Bob,bob.jones@example.com,1978-08-30,789 Pine Rd,555-0303,NY,10001,Male,Secondary,Alex Mercer,BobJones-Account,Life Insurance,MetLife,POL-10003-B,2024-05-01,2025-05-01,2200.00
+Alice,alice.wang@example.com,1995-02-14,321 Elm Blvd,555-0404,WA,98001,Female,Dependent,Sarah Connor,AliceWang-Account,Home Insurance,State Farm,POL-10004-A,2024-07-01,2025-07-01,670.00
+Alice,alice.wang@example.com,1995-02-14,321 Elm Blvd,555-0404,WA,98001,Female,Dependent,Sarah Connor,AliceWang-Account,Dental Insurance,Cigna,POL-10004-B,2024-08-01,2025-08-01,280.00
+Carlos,carlos.rivera@example.com,1982-03-19,654 Maple Dr,555-0505,FL,33001,Male,Primary,Alex Mercer,CarlosRivera-Account,Commercial Auto,Allstate,POL-10005-A,2024-09-01,2025-09-01,780.00
