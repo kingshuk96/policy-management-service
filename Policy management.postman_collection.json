@@ -1,0 +1,195 @@
+{
+  "info": {
+    "_postman_id": "7e17c9e0-2f5d-4f9f-8c9c-c629a6879f3e",
+    "name": "Policy management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7122757"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload API",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "87a6c8e5-b4ad-41e4-bfa6-fd203171aca1",
+              "src": "LcFuN2Zeg/data-sheet -Nodejs-Assesment.csv"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Policy Search By Name",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/policies/search?username=Brian",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "policies",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "Brian"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Policy Aggregation By Users",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/policies/aggregated-by-user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "policies",
+            "aggregated-by-user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Scheduler Message",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"message\": \"Send policy renewal notification to all policyholders\",\r\n  \"day\": \"2026-12-25\",\r\n  \"time\": \"10:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/scheduler/message",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "scheduler",
+            "message"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Schedule Message",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"message\": \"Send policy renewal notification to all policyholders\",\r\n  \"day\": \"2026-12-25\",\r\n  \"time\": \"10:00:00\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/scheduler/message/9939adcd-253b-49cb-816b-7fedd35f12e5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "scheduler",
+            "message",
+            "9939adcd-253b-49cb-816b-7fedd35f12e5"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
