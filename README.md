@@ -6,17 +6,17 @@ A scalable, modular Node.js backend built with **Fastify**, **MongoDB (Mongoose)
 
 ## 📦 Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Runtime** | Node.js (v18+) |
-| **Framework** | [Fastify](https://fastify.dev/) (v4+) |
-| **Database** | MongoDB + Mongoose ODM |
-| **File Parsing** | `csv-parser`, `xlsx` |
-| **Concurrency** | `worker_threads` (Off-main-thread ingestion) |
-| **Process Management** | Node.js `cluster` (Multi-core load balancing) |
-| **Scheduling** | `node-schedule` (Cron & timestamp scheduling) |
-| **Monitoring** | `os-utils` (Real-time CPU spike detection & auto-restart) |
-| **Testing** | Jest + Supertest (36 automated integration & unit tests) |
+| Layer                  | Technology                                                |
+| ---------------------- | --------------------------------------------------------- |
+| **Runtime**            | Node.js (v18+)                                            |
+| **Framework**          | [Fastify](https://fastify.dev/) (v4+)                     |
+| **Database**           | MongoDB + Mongoose ODM                                    |
+| **File Parsing**       | `csv-parser`, `xlsx`                                      |
+| **Concurrency**        | `worker_threads` (Off-main-thread ingestion)              |
+| **Process Management** | Node.js `cluster` (Multi-core load balancing)             |
+| **Scheduling**         | `node-schedule` (Cron & timestamp scheduling)             |
+| **Monitoring**         | `os-utils` (Real-time CPU spike detection & auto-restart) |
+| **Testing**            | Jest + Supertest (36 automated integration & unit tests)  |
 
 ---
 
@@ -61,9 +61,9 @@ policy-management-service/
 
 ## ⚙️ Prerequisites
 
-* **Node.js** (v18 or higher)
-* **MongoDB** (Local instance or MongoDB Atlas connection string)
-* **npm** (v9 or higher)
+- **Node.js** (v18 or higher)
+- **MongoDB** (Local instance or MongoDB Atlas connection string)
+- **npm** (v9 or higher)
 
 ---
 
@@ -81,12 +81,12 @@ npm install
 
 Create a `.env` file in the root directory:
 
-| Variable | Description | Default |
-|---|---|---|
-| `PORT` | Port number the Fastify server listens on | `3000` |
-| `MONGO_URI` | MongoDB connection string (Atlas or Local) | — |
-| `CPU_THRESHOLD` | CPU percentage that triggers worker restart | `70` |
-| `NODE_ENV` | Environment mode (`development` or `production`) | `development` |
+| Variable        | Description                                      | Default       |
+| --------------- | ------------------------------------------------ | ------------- |
+| `PORT`          | Port number the Fastify server listens on        | `3000`        |
+| `MONGO_URI`     | MongoDB connection string (Atlas or Local)       | —             |
+| `CPU_THRESHOLD` | CPU percentage that triggers worker restart      | `70`          |
+| `NODE_ENV`      | Environment mode (`development` or `production`) | `development` |
 
 ### 3. Initialize Database Indexes
 
@@ -101,6 +101,7 @@ npm run db:init
 ## 🏃 Running the Application
 
 ### Production / Cluster Mode
+
 Forks worker processes across CPU cores for maximum throughput and zero-downtime auto-restart:
 
 ```bash
@@ -108,6 +109,7 @@ npm start
 ```
 
 ### Development Mode (with hot-reload)
+
 Watches for file changes and restarts automatically:
 
 ```bash
@@ -147,9 +149,10 @@ npx jest tests/monitor.test.js
 ## 📡 API Reference & Endpoints
 
 ### 1. Health Check
-* **`GET /health`**
-  * Verifies server status.
-  * **Response (200 OK):**
+
+- **`GET /health`**
+  - Verifies server status.
+  - **Response (200 OK):**
     ```json
     {
       "success": true,
@@ -161,12 +164,13 @@ npx jest tests/monitor.test.js
 ---
 
 ### 2. Multi-Threaded File Ingestion
-* **`POST /api/upload`**
-  * Ingests `.csv` or `.xlsx` files using background `worker_threads` without blocking the main event loop.
-  * Automatically handles deduplication and relational linking for **Agents**, **Users**, **Accounts**, **LOBs**, **Carriers**, and **Policies**.
-  * **Headers:** `Content-Type: multipart/form-data`
-  * **Body (form-data):** `file`: `<select CSV or XLSX file>`
-  * **Response (200 OK):**
+
+- **`POST /api/upload`**
+  - Ingests `.csv` or `.xlsx` files using background `worker_threads` without blocking the main event loop.
+  - Automatically handles deduplication and relational linking for **Agents**, **Users**, **Accounts**, **LOBs**, **Carriers**, and **Policies**.
+  - **Headers:** `Content-Type: multipart/form-data`
+  - **Body (form-data):** `file`: `<select CSV or XLSX file>`
+  - **Response (200 OK):**
     ```json
     {
       "success": true,
@@ -184,10 +188,11 @@ npx jest tests/monitor.test.js
 ---
 
 ### 3. Policy Search by Username
-* **`GET /api/policies/search?username=:name`**
-  * Performs a case-insensitive search by user first name. Returns populated documents with resolved references (`userId`, `agentId`, `lobId`, `carrierId`).
-  * **Example:** `GET http://localhost:3000/api/policies/search?username=John`
-  * **Response (200 OK):**
+
+- **`GET /api/policies/search?username=:name`**
+  - Performs a case-insensitive search by user first name. Returns populated documents with resolved references (`userId`, `agentId`, `lobId`, `carrierId`).
+  - **Example:** `GET http://localhost:3000/api/policies/search?username=John`
+  - **Response (200 OK):**
     ```json
     {
       "success": true,
@@ -198,7 +203,11 @@ npx jest tests/monitor.test.js
           "premiumAmount": 1250,
           "policyStartDate": "2024-01-01T00:00:00.000Z",
           "policyEndDate": "2025-01-01T00:00:00.000Z",
-          "userId": { "firstName": "John", "email": "john@example.com", "phone": "555-0101" },
+          "userId": {
+            "firstName": "John",
+            "email": "john@example.com",
+            "phone": "555-0101"
+          },
           "agentId": { "name": "Alex Mercer" },
           "lobId": { "categoryName": "Commercial Auto" },
           "carrierId": { "companyName": "Progressive" }
@@ -210,10 +219,11 @@ npx jest tests/monitor.test.js
 ---
 
 ### 4. Aggregated Policies by User
-* **`GET /api/policies/aggregated-by-user`**
-  * MongoDB aggregation pipeline grouping policies by user with count, total, average, min, and max premium amounts, sorted descending by total premium.
-  * **Example:** `GET http://localhost:3000/api/policies/aggregated-by-user`
-  * **Response (200 OK):**
+
+- **`GET /api/policies/aggregated-by-user`**
+  - MongoDB aggregation pipeline grouping policies by user with count, total, average, min, and max premium amounts, sorted descending by total premium.
+  - **Example:** `GET http://localhost:3000/api/policies/aggregated-by-user`
+  - **Response (200 OK):**
     ```json
     {
       "success": true,
@@ -244,9 +254,10 @@ npx jest tests/monitor.test.js
 ---
 
 ### 5. Dynamic Message Scheduling
-* **`POST /api/scheduler/message`**
-  * Schedules a message for database insertion at a specific day and time.
-  * **Body (JSON):**
+
+- **`POST /api/scheduler/message`**
+  - Schedules a message for database insertion at a specific day and time.
+  - **Body (JSON):**
     ```json
     {
       "message": "Send policy renewal reminder to all policyholders",
@@ -254,7 +265,7 @@ npx jest tests/monitor.test.js
       "time": "10:00:00"
     }
     ```
-  * **Response (201 Created):**
+  - **Response (201 Created):**
     ```json
     {
       "success": true,
@@ -271,10 +282,11 @@ npx jest tests/monitor.test.js
 ---
 
 ### 6. Cancel Scheduled Message
-* **`DELETE /api/scheduler/message/:taskId`**
-  * Cancels a pending scheduled job across all cluster workers.
-  * **Example:** `DELETE http://localhost:3000/api/scheduler/message/7b54a501-9251-4f40-b6aa-5f991f86ca2b`
-  * **Response (200 OK):**
+
+- **`DELETE /api/scheduler/message/:taskId`**
+  - Cancels a pending scheduled job across all cluster workers.
+  - **Example:** `DELETE http://localhost:3000/api/scheduler/message/7b54a501-9251-4f40-b6aa-5f991f86ca2b`
+  - **Response (200 OK):**
     ```json
     {
       "success": true,
